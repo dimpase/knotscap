@@ -1,0 +1,105 @@
+
+&Return to @Table of Contents%
+
+
+The purpose of this page is to go through a few of Knotscape's procedures
+so as to get started.  We trust that most of the actions are intuitive.
+Suggestions for improvement are most welcome.
+
+1.  Enter
+
+     4 1   4 6 8 2
+     
+in the main ("Input") window.  "4 6 8 2" is the Dowker sequence for the standard 
+diagram of the figure-eight knot.  The initial "4" is just the number of crossings
+of the diagram, and the "1" is an arbitrary index which we have assigned to this knot.
+   Now click on the "Action" menu, and click on "Locate in Table".  The output
+window will appear, with the entry "4  a  1   4 6 8 2", meaning that this knot
+is the first (!) alternating knot with 4 crossings.
+   Close the output window by clicking the "Close window" button, return to the
+Action menu, and select "Horoball Diagrams" followed by "Cut-off Diameter 0.2"
+in the submenu.  A new window should appear illustrating horoballs of diameter
+from 1 down to 0.2 .
+   Observe the rectangle in the center of the diagram; this represents a fundamental
+region in the horoball (not illustrated) occupying the plane z=1 .  Typically
+this region is a parallelogram; here it is a rectangle because of the symmetry
+of the figure-eight knot.  Clicking on the horoball diagram yields another window
+containing a magnified view of a neighborhood of the point selected.
+   By clicking on the "Save Ps" button, you may save this horoball diagram as a
+PostScript file, which can be sent to a printer or displayed with a PostScript
+viewer such as Ghostview.  In each PostScript file the name of the knot and the
+horoball cut-off diameter is given in the %%Title statement, on the second line of
+the file.  The other action which generates PostScript files is the "Draw Knot" option.
+   Most actions have keyboard shortcuts: these are indicated either in the
+appropriate menu or in the appropriate help page.
+   
+2.  Select "Enter Braid" from the File menu, or equivalently type CTRL-b with
+the mouse cursor in the Input window.  Obtain keyboard focus in the braid entry
+widget by clicking it, and enter the braid word   abcabcabcabcabcabababababab  .
+(Do not type the period.)  Click "OK" (or hit return), and select "Maximal
+Cusp Neighborhood" from the Action menu.  Some assorted information is given
+on the maximal cusp neighborhood, including its volume and the lengths of
+various closed curves on its boundary torus.  The program reports all curves
+whose lengths are up to three times the length of the meridian.  Note that one
+particular curve is reported as being shorter than the meridian (this is an
+unusual feature of this knot.)  Type CTRL-1 in the Input window, and after a
+delay of a few seconds see all this information in the horoball diagram.  The
+horoball diagram takes a little while to draw, as it contains in excess of
+15,000 circles.  The fundamental region for this knot is so thin that you'll
+need to zoom by clicking on the diagram.
+
+3.  Open LinkSmith from the File menu, and draw a knot with the mouse.  Use
+the right mouse button to close up the piecewise linear path.  Try out
+LinkSmith's features, referring to its Help page.  Use the "Submit to Knotscape"
+option in LinkSmith's file menu to enter the Dowker sequence for the knot
+you have created in the Input window.
+
+4.  Open the Browser window by clicking on "Browse".  With the mouse pointer in
+the Browser window you can navigate around the radiobuttons with the arrow keys.
+Typing "a" toggles between "alternating" and "non-alternating", and typing "s"
+toggles between "single knot" and "range of knots".  Select "11 crossings",
+"non-alternating" and "range of knots", and hit the return key.  After a second
+or two the 185 11-crossing non-alternating knots will appear in the Input Window.
+Alternatively, any desired range can be selected by typing in the entry box in the
+Browser window.
+   Unless your computer has more than 32MB of memory you might cause the
+program to crash through memory overload if you try to load, say, all 168030
+non-alternating 15-crossing knots at once.
+   Close the Browser window and select any of the 185 knots, either by
+triple-clicking the mouse or by dragging.  Open the homomorphisms menu window
+by typing CTRL-h, or by choosing "Homomorphisms" in the Action menu.  You can
+choose a particular cycle type either with the mouse or the arrow keys, and you
+can choose whether to compute homology groups, either by clicking or by typing "h".
+Select (abc)(de) and "homology", and hit "Enter".  A window appears with a list
+of homomorphisms (possibly empty), and information as to how peripheral elements
+of the knot group are mapped.  You can select a range of knots to be processed;
+if you don't make a selection all knots in the Input window will be processed.
+Processing all 185 non-alternating knots will take anything from a few seconds
+to a few minutes, depending on the speed of your computer.
+
+5.  Try some other functions from the Action menu.  Some actions, for example
+the computation of the Kauffman polynomial, take a very long time for knots
+with more than 25 crossings (although this computation is rapid for knots
+with fewer than 20 crossings.)  Knots can be also be entered in the Input
+window by pasting with the mouse, or by means of the "Open" option in the
+File menu.  Knots in the table are listed in a different order to that in
+the classical literature.  The reason is that we have chosen an ordering
+natural for the Dowker notation; in any event, the classical tables
+only go as far as 11 crossings.  If you know the Rolfsen identifier
+of your knot (e.g. 9_37), the Dowker index of the knot can be obtained
+by referring to one of the "dictionaries" in Knotscape's "doc" directory.
+These are provided in ascii and html format.
+
+
+6.  The contents of the Input window can be saved by choosing
+"Save" in the File menu, and the contents of the Output window can be saved
+by typing "Ctrl-s" or by clicking on the Save button.
+
+
+&Return to @Table of Contents%
+
+
+
+
+
+

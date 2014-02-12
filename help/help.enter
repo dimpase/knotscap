@@ -1,0 +1,38 @@
+
+&Return to @Table of Contents%
+
+
+Knots may be entered either manually, via the Browser window, as a braid (see
+the File menu), or via LinkSmith (see the File menu). In all cases, the format
+for entering knots in the input window is as follows:
+
+<# crossings>  <knot ID>  <Dowker code>
+
+
+"# crossings" means the number of crossings of the diagram;
+
+"knot ID" is an arbitrary positive integer, used to label the knot;
+
+"Dowker code" is a sequence of n even integers which determine the
+knot diagram, where n is the number of crossings of the diagram.
+&For an explanation of this code, see #Dowker Code Example%.
+
+
+Example:
+
+3   1   4 6 2
+4   13   4 -6 8 -2
+10  121   8 10 12 14 16 18 20 2 4 6
+
+
+"Dictionaries" are provided in the doc directory for converting between
+Knotscape's numbering system for knots and Rolfsen's numbering system.
+
+
+&Return to @Table of Contents%
+
+
+
+
+
+

@@ -1,0 +1,23 @@
+4/1/99  knotscape_1.01 released.  The following bug-fixes and improvements
+were made to knotscape_1.0.  Thanks to various people for notifying us of
+these bugs!
+
+(1)  The main "locate" engine, knotfind.c was overhauled.  It now has about
+one-fourth of the original memory requirement: it now requires about 10MB for knots
+of 16 crossings and over.  Also, "knotfind" had a tendency to produce a segmentation
+violation for large knots, and (maybe!) this problem is now cured.
+
+(2)  Bugs were fixed in "draw" and "knot_group_reps", which caused fatal problems
+when Knotscape was being run by more than one user.
+
+(3)  Scratch filenames are now personalized with the prefix K<process id>, to avoid
+clashes when Knotscape is being run by more than one user.
+
+(4)  On termination, Knotscape now deletes all scratch files belonging to the current
+process.
+
+(5)  Error handling has been improved:  if one of the binary modules malfunctions,
+a message is displayed, allowing the user to continue with the other functions of
+Knotscape.  Please advise by emailing morwen@math.utk.edu if such an error message
+is displayed.  We might not be able to fix the problem immediately, as we aren't
+professional programmers, but will endeavour to do so at the earliest opportunity.

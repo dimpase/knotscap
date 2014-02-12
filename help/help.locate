@@ -1,0 +1,13 @@
+
+&Return to @Table of Contents%
+
+When the "Locate in Table" item of the "Action" menu is activated,
+the program reads the selected knot sequences, and endeavors to
+reduce them to minimal form using moves on diagrams.  If no knot
+has been selected, the first knot listed in the input window is
+processed.  If the input diagram has 16 crossings or less,
+the program guarantees to identify the knot, either as a prime
+knot in the table, or as a connected sum of knots from the table.
+
+"Dictionaries" are provided in the doc directory for converting between
+Knotscape's numbering system for knots and Rolfsen's numbering system.

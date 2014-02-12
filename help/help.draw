@@ -1,0 +1,18 @@
+
+&Return to @Table of Contents%
+
+
+The option "Draw knot" in the Action menu will produce a drawing of
+any knot whose code has been selected with the mouse in the input
+window.  If no knot code has been selected, the knot corresponding
+to the first line of the input window will be drawn.
+
+The drawing engine was contributed by Ken Stephenson, and is based
+on W. Thurston's algorithm for generating a circle packing from
+a triangulation of the unit disk.
+
+
+
+
+
+

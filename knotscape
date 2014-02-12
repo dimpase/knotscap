@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# Setup environment variables
+#
+# KSDIR is Knotscape's home directory.  It must be set to the
+#   root of the Knotscape directory tree.  By default it is
+#   set to the directory containing this shell script.
+#
+# TMPDIR is the scratch directory; you may wish to change it  
+#   (e.g. to /tmp).
+
+KSHOME=/home/knotscape/knotscape_1.01
+
+TMPDIR=$KSHOME/tmp
+
+export KSHOME
+export TMPDIR
+
+# Run Knotscape
+# In the next line, you may need to make wish version-specific, e.g. wish4.0
+
+wish  $KSHOME/tcl/knotscape_main.tcl -name Knotscape

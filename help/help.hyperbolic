@@ -1,0 +1,67 @@
+
+&Return to @Table of Contents%
+
+
+We are indebted to Jeff Weeks for his permission to use the 
+SnapPea 2.0 kernel in the present version of Knotscape.
+
+In horoball diagrams, the fundamental region on the "infinite"
+horosphere z=1 is is chosen so that the horizontal sides represent
+longitudinal translations, and the other two sides represent
+meridional translations (this is consistent with SnapPea 2.0.)
+The volume of the maximal cusp neighborhood is equal to half
+the area of this parallelogram.  Except for knots of small
+crossing-number, the number of horoballs in the diagram tends
+to be rather large if the cut-off diameter is chosen to be below
+0.1.
+
+We have included files containing all hyperbolic knots of up
+to 16 crossings whose symmetry groups are D_n (n >= 3) or
+Z_n (n >= 3).  These files are located in doc/symmetric_knots.
+The symmetry groups of the individual knots may be found by
+loading the files in the Input window and running Knotscape.
+The symmetries manifest themselves in horoball diagrams, but
+the symmetries of the non-alternating knots are often not
+visible in diagrams of minimal crossing-number.
+
+The "Canonical Decomposition" feature displays the canonical
+decomposition of the knot complement into ideal cells.
+Each edge of the diagram is the intersection of a lift
+of a 2-cell of the decomposition with the horosphere z=1.
+Each numerical label belongs to an edge of the preimage
+of the canonical decomposition in the universal cover; the
+labels dictate how the boundaries of the 3-cells are to be
+identified so as to recover the knot complement.  The black
+labels belong to "vertical" edges, i.e. edges with one end
+at infinity, and the purple labels belong to edges with
+neither end at infinity.  For certain symmetric knots, for
+example the Turk's Head Knot (DT code 6 8 10 12 14 16 2 4,
+Rolfsen 8_18),  not all 3-cells are tetrahedra, and faces
+can be ideal polygons with more than three sides.  A face
+with a vertex at infinity and with more than three sides
+will have at least one vertex not connected to infinity
+by an edge; such vertices are indicated by small yellow
+squares.  The canonical decomposition of the Turk's head knot
+complement consists of two ideal cells, each with two quadrilateral
+faces and eight triangular faces, as illustrated in the following
+&picture: #Turk's Head Polytope% .
+
+Occasionally the edges of the canonical decomposition are so
+"bunched up" that it's impossible to display them satisfactorily.
+This happens in particular with twist knots.  In such cases
+the best approach is to edit the PostScript file so as to
+enlarge a region of interest by any desired factor.  The font
+used for the labels can also be rescaled by editing.
+
+A caveat:  very occasionally, for knots of more than 16 crossings,
+it can happen that the computation of the canonical decomposition
+is adversely affected by round-off error.  In such cases (which
+are rare), the cell decomposition produced by SnapPea has the
+correct underlying manifold, but isn't canonical.  For general
+information on the canonical decomposition, see the excellent
+documentation in the source code of SnapPea, which may be
+downloaded from  http://thames.northnet.org/weeks/ .
+
+
+&Return to @Table of Contents%
+

@@ -1,0 +1,70 @@
+
+
+&Return to @Table of Contents%
+
+LinkSmith is a mouse-driven drawing tool that allows you to enter, and edit,
+piecewise linear oriented link diagrams. Knot diagrams may be encoded by
+LinkSmith and sent to the Input window of Knotscape. (At the present time,
+Knotscape will not handle links even though LinkSmith will.)
+
+LinkSmith is opened by choosing "LinkSmith" from the File menu of Knotscape. 
+After opening LinkSmith, you may begin drawing by clicking with the left mouse
+button. This will establish the first vertex of an edge whose other vertex will
+move about as the mouse is moved. Clicking with the left mouse button again
+will end that edge and begin the next edge of a PL arc. To end the arc, click
+with the right mouse button. Any number of arcs may be drawn in this way.
+Clicking with the right mouse button in "white space" will end the arc
+currently being drawn, but it is also possible to end an arc at any preexisting
+valence-1 vertex. To do this, click on (near) the existing vertex with either
+the left or right mouse button. When joining different arcs, their color and
+orientation will be made coherent.
+
+As each edge of an arc is drawn, LinkSmith will check to make sure that the
+diagram remains in general position. You will not be allowed to place a vertex
+too close to an existing edge, draw an edge which passes too close to a vertex
+or crossing, or, finally, draw an edge that is too short. (WARNING: Forgetting
+about short edges can lead to frustration, as repeated attempts to draw what
+looks like a perfectly good edge will not work!)
+
+When arcs cross, LinkSmith will automatically locate the crossing and draw it
+correctly. To change a crossing, click on it with the center mouse button (while
+not in the process of drawing an arc). Crossings may also be changed en masse to
+reflect the diagram through the plane of projection or to make the diagram
+alternate. These functions will be found in the ACTION menu. Note, however, that
+LinkSmith will not attempt to alternate a diagram that contains arc-components.
+
+When not currently drawing an arc, vertices of the diagram can be dragged. Grab
+a vertex with the center mouse button and, without releasing the button, move
+the mouse, thereby draging the vertex, and its attached edges, to a new
+location. When dragging a valence-1 vertex, you may end the drag at another
+valence-1 vertex and LinkSmith will join the arcs. Again, LinkSmith checks to
+make sure the diagram remains in general position.
+
+When not currently drawing an arc, edges may be selected by clicking on them
+with the middle mouse button. Selecting an edge will cause it to become
+highlighted. Selecting it again will unselect it and return its appearance to
+normal. An entire component may be selected by clicking on it with the right
+mouse button. Clicking on it again with the right mouse button will unselect it.
+
+Once an edge, or collection of edges, is selected, it may be deleted by
+choosing "Cut" from the Edit menu. Choosing "Cut" will delete all currently
+selected edges. 
+
+Selecting edges is also used to reverse the orientation of a component.
+Choosing "Reverse" from the Action menu will reverse the orientation of all
+components containing currently selected edges. To reverse all of the
+components of a diagram, choose "Reverse All" from the Action menu. 
+This does not require the selection of any edges. 
+
+Once a diagram has been drawn, choose "Save", or "Save As" from the Edit menu
+to save it. Diagram files should be given a .lsd extension, which stands for
+LinkSmith Diagram. Only files with a .lsd extension will be opened by LinkSmith
+when using the "Open" command, located in the Edit menu. When using "Save", a
+backup copy of the file will be made and named <filename>.bak.lsd. When saving
+a file, if the given filename does not end in .lsd, LinkSmith will
+automatically append this extension.
+
+Finally, to enter the Dowker code of a knot diagram in the Input window of
+Knotscape, choose "Submit to Knotscape" from the File menu.
+
+&Return to @Table of Contents%

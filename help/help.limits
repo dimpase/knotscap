@@ -1,0 +1,55 @@
+
+Related topics:
+
+&@Homomorphisms%
+&@Polynomials%
+
+&Return to @Table of Contents%
+
+
+In the previous version of Knotscape, various limits were
+imposed so as to prevent overloading computer memory.
+In the present version, we have dispensed with most of
+these limits and passed on responsibility to the user.
+
+However, some limits are forced by the design of the
+computational programs: (i) the limit on crossing-number
+is 49; (ii) the present program for computing homomorphisms
+of knot groups can only deal with knots whose bridge
+number is 5 or less.
+
+The user should bear in mind the capacity of the individual
+computer in deciding how many knots to load at once.
+For example, if all 168,030 15-crossing non-alternating knots
+are loaded into the input window, this will consume more than
+20MB of memory.  An even more expensive scenario would be
+the computation of Seifert matrices of this many knots.
+If you want to load all 16-crossing non-alternating knots
+at once, you'll need at least 128MB of memory as well as a
+swap partition.
+
+The user will observe that certain functions are carried out
+much more rapidly than others.  Computation of polynomials
+is very rapid up to, say, 15 crossings (in the order of
+100-200 knots a second on a Pentium), but the computation
+of the Kauffman polynomial of a 45-crossing knot might well
+take several weeks! The hyperbolic invariants are generally
+computed at a very satisfactory speed.  However, a horoball
+cut-off diameter of less than 0.1 will often produce large
+numbers of circles for knots with more than 10 crossings,
+and these will take a while to draw.  Computation of Seifert
+matrices and signatures is extremely rapid (there isn't so
+much to do), whereas the computation of homology groups
+of branched covering spaces is rather slower, in view of
+the large matrices which need to be reduced.
+
+Occasionally the computation of a homology group will abort,
+owing to impending integer overflow in the matrix entries.
+"Exploding entries" is a well-known problem associated with
+the reduction of integer matrices.  It can be avoided using
+a more elaborate algorithm, involving computations modulo
+powers of suitable primes.
+
+
+
+&Return to @Table of Contents%

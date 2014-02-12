@@ -1,0 +1,17 @@
+
+&Return to @Table of Contents%
+
+
+Most of the mouse actions in Knotscape have keyboard
+equivalents.  Arrays of radiobuttons can be navigated
+using the arrow keys;  killing a window is usually
+<CTRL-q>, and starting a computation is usually <Enter>.
+The entire application is closed by typing <CTRL-ALT-q>,
+with the focus in the Input window.
+
+In the Browser window, "a" toggles between "alternating"
+and "non-alternating", and "s" toggles between "single knot"
+and "range of knots".
+
+In the Homomorphisms window, "h" toggles the "homology"
+button.

@@ -1,0 +1,32 @@
+
+Related Topics:
+&@Operational Limits%
+&@Notation for Knots%
+
+&Return to @Table of Contents%
+
+
+The "homomorphisms" program will find homomorphisms of the knot group
+into the symmetric group of degree 5, sending meridians to
+permutations of chosen cycle type.  Note that the meridians of a knot
+group form a single conjugacy class, so all meridians must be mapped to
+permutations of the same type.  The program finds all homomorphisms, up to
+composition with automorphisms of the symmetric group.
+
+For purposes of output, the knot is divided into segments which begin and
+end at underpasses.  The number of segments is thus equal to the number
+of crossings of the diagram, and each segment corresponds to a (Wirtinger)
+meridian generator of the knot group.  The first generator is taken to
+be that corresponding to the segment immediately following the point
+&labelled 1 on the knot curve (see @Notation for Knots%), and the image
+permutations are output in the order in which the segments occur in the
+knot.
+
+If the "homology" checkbutton is activated, the program will also compute
+(considerably more slowly) the first homology group of the associated
+branched covering space.  The homology group is output as a sequence of
+non-negative integers, where each integer n corresponds to an invariant
+cyclic factor of order n (0 represents the infinite cyclic group).
+
+&Return to @Table of Contents%
+

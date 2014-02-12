@@ -1,0 +1,49 @@
+
+Related topics:
+&@Locating a Knot in the Table%
+
+&Return to @Table of Contents%
+
+
+The notation used for knots is the Dowker notation, which is adapted from a
+notation proposed by Tait in the nineteenth century.  It is also equivalent
+to an enhanced version of the "Gauss" notation.  The idea is to "walk
+round" the knot curve, recording crossover data on the way.  Probably
+the quickest route to understanding the notation is to study the 
+&#Dowker Code Example%, which illustrates the code for a 4-crossing diagram
+of the right-handed trefoil knot.
+
+Suppose that we are given an n-crossing alternating diagram D of a knot K.
+Choose arbitrarily a starting point and direction on K, and then
+travel around the knot K labelling in order from 1 to 2n the points of K
+which project to crossovers of the diagram D.  If we consider that two
+labelled points on K form a pair if they project to the same crossover
+of D, this pairing gives rise to a chart such as that given in the
+&#Dowker Code Example%, where the top row consists of the odd numbers 
+from 1 to 2n-1 in order, and the bottom row is the sequence of corresponding
+even numbers.  Then the Dowker code for the diagram D together with the
+choice of starting point and direction, is this sequence of even numbers. 
+
+We may extend this code to non-alternating diagrams by taking the
+convention that prefixing a number by a minus sign corresponds to
+switching the corresponding crossover of the diagram D.
+
+The code depends in general on the choice of starting point and direction,
+but we can regard the standard code for the diagram as being the code
+which is lexicographically least.  Similarly the standard code for a
+knot type is the lexicographically smallest code, taken over all
+possible diagrams representing the knot type.
+
+When computing invariants, it is assumed that the crossover correponding
+to the point labelled 1 is a positive crossover, according to the usual
+convention.
+
+"Dictionaries" are provided in the doc directory for converting between
+Knotscape's numbering system for knots and Rolfsen's numbering system.
+
+
+&Return to @Table of Contents%
+
+
+
+

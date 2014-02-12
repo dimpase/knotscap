@@ -1,0 +1,47 @@
+
+Related topics:
+&@Notation for Knots%
+&@Operational Limits%
+
+&Return to @Table of Contents%
+
+
+&#Illustration of Polynomial Formats%
+
+
+The routines for computing polynomials were written by Bruce Ewing and
+Kenneth Millett; some minor modifications were implemented in order to
+make them portable.  There are two routines:  poly1 for the
+Alexander, Jones and Homfly polynomials, and poly2 for the Kauffman
+polynomial.  Whenever poly1 is invoked, it outputs its three polynomials
+into files alex.txt, jones.txt, homfly.txt respectively.
+
+The output formats of 1-variable polynomials are as follows.
+
+Alexander polynomial:  <#crossings> <knot ID> <coefficients>
+
+Jones polynomial:  <#crossings> <knot ID> <lowest exponent> <highest exponent>
+                   <coefficients>
+                   
+
+For the Homfly and Kauffman polynomials, coefficients which are identically
+zero are omitted.
+
+The Homfly polynomial is output using (v,z) variables, i.e. the variables
+&used by Hugh Morton.  See #Illustration of Polynomial Formats% for the defining
+identities of this polynomial.  It is written as a sequence of polynomials
+in the variable v, these polynomials being the coefficients of z^0, z^2, ...
+respectively.  Each polynomial in v is written in the format
+<lowest exponent> <highest exponent> <coefficients>.
+
+The Kauffman 2-variable polynomial is output using Louis Kauffman's original
+(a,z) variables, and uses the same format as the Homfly polynomial.  For a
+precise definition of the Kauffman polynomial, see Kauffman's original
+paper:
+
+L.H. Kauffman, An invariant of regular isotopy, Trans. Amer. Math. Soc.
+318 no.2 (1990), 417-471.
+
+ 
+&Return to @Table of Contents%
+
