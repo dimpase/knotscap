@@ -12,6 +12,7 @@ Compile with
 */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 
 #define MAX_SIZE 5001		/* max number of vertices of packing */

@@ -41,7 +41,7 @@ int   x[7][40][80],
 char  cycles[150][100], *groupdesc[8]={"", "S3", "D5", "A4", "A(1,5)", "S4", "A5", "S5"},
       (*vecm)[4], (*vec[4])[4];
    
-extern char *malloc();
+//extern char *malloc();
 
 
 main(int argc, char *argv[])

@@ -4,8 +4,8 @@
 
 # Edit the next two lines if necessary
 
-CC = /usr/bin/gcc
-CFLAGS = -O2 -s -fomit-frame-pointer
+CC = gcc
+CFLAGS = -O2 -fomit-frame-pointer
 
 MATHFLAGS = -lm
 

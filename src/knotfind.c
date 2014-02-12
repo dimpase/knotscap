@@ -187,7 +187,7 @@ filter()
       {
         searchtype=2;
         for (j=1; j<=lknot; j++) xrinv[j]=j;
-        heapsort(xrinv);
+        heapsor(xrinv);
       }
     }
 
@@ -304,7 +304,7 @@ xinsert(signed char *a, signed char *g)
 }
 
 
-heapsort(int *x)
+heapsor(int *x)
 {
   int i, j, k, r, s;
 

@@ -1,6 +1,7 @@
 /* there is a hard limit of 127 crossings in this program */
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #define XCNT   80    /* maximum "crossing count" (at most 127)  */
 FILE *fp, *gp ;
 long plybuf[XCNT*(XCNT+2)]; 

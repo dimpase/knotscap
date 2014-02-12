@@ -9,9 +9,9 @@
 # TMPDIR is the scratch directory; you may wish to change it  
 #   (e.g. to /tmp).
 
-KSHOME=/home/knotscape/knotscape_1.01
+KSHOME=/tmp/knotscape_1.01
 
-TMPDIR=$KSHOME/tmp
+TMPDIR=/tmp
 
 export KSHOME
 export TMPDIR

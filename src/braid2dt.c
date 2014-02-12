@@ -109,8 +109,7 @@ int braid2DT(
       generators[generator]=1;
       for(i=0;i<abs(exponent);i++){
          if(N+i>=maxCrossings){
-            fprintf(gp, "Number of crossings exceeds constant
-            maxCrossings=%4d\n",maxCrossings);
+            fprintf(gp, "Number of crossings exceeds constant maxCrossings=%4d\n",maxCrossings);
             return 1;
          }
       	 braid[N+i][0]=generator;
