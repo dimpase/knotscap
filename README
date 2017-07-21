@@ -5,7 +5,7 @@ with help from Bruce Ewing, Ken Millett, Ken Stephenson and Jeff Weeks.
 
 Features added since Version 1.0:
 
-(1)  LinkSmith has a new "Export" menu, with two options:
+(1)  LinkSmith has a new "Export" menu,   with two options:
   (i) save the current link diagram in Ewing-Millett format;
   (ii) save the underlying link complement as an ideal
   triangulation, in SnapPea-readable format.
