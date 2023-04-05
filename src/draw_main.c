@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <draw.h>
+//#include <draw.h>
 #include <math.h>
 
+int nc, nr, infinitereg, ccr[100][50];
+float drawcoords[500][4];
 double badness();
 
 main(argc, argv)

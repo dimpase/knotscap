@@ -9,7 +9,7 @@
 # TMPDIR is the scratch directory; you may wish to change it  
 #   (e.g. to /tmp).
 
-KSHOME=/tmp/g/knotscape_1.01
+KSHOME=`pwd`
 
 #TMPDIR=$KSHOME/tmp
 TMPDIR=/tmp

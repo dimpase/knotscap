@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <draw.h>
 
-FILE *fp, *gp;
 
 int a0[200], b1[200][3], c2[200][200], c3[200][200], c4[200][200], 
     cm[200][200], cop[200][200], dop[200][200], er[200][200], f[200], g0[200], 
@@ -25,6 +24,7 @@ triang(infile, outfile)
 char *infile, *outfile;
 
 {
+  FILE *fp, *gp;
 
   fp=fopen(infile, "r"); 
   gp=fopen(outfile, "w");

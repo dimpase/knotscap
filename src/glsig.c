@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <math.h>
-
-FILE *fp, *gp;
+#include <stdlib.h>
 
 int a[100], b[100], b1[100][3],
     c[100][100], c2[100][100], c3[100][100], c4[100][100], 
@@ -20,173 +19,204 @@ int dd, dd1, n, r, nr, cc1, cc2, cc3, k1, row, ppn, knotid, dir,
 double d[100];
 
 
-int main(int argc, char **argv)
+int sign(x)
+register int x;
 {
+  if (x > 0) return 1;
+  if (x < 0) return -1;
+  return 0;
+}
 
-  fp=fopen(argv[1],"r");
-  gp=fopen(argv[2],"w");
+void gc(x, y, d, a, b)
+register int x, y, *d, *a, *b;
+{
+  int c[100], i, p, q, r, a1, b1, t;
 
-  
-  while (fscanf(fp, "%d%d", &nc, &knotid) != EOF)
+  p=abs(x);
+  q=abs(y);
+  t=0;
+  while (q != 0)
   {
-    n = 2*nc - 1;
-    np = 2*nc;
-    nr = nc + 2;
-    
-    q=md+np;  /* q maps x to x mod np, with 0 replaced by np */
-    for(i=-np; i<=3*np; i++) *(q+i)=mod0(i);
-    
-    for (i=1; i<=np; i++)
+    c[++t]=p/q;
+    r=p-c[t]*q;
+    p=q;
+    q=r;
+  }
+
+  *d=p;
+  *a=1;
+  *b=-c[t-1];
+
+  for (i=t-1; i>=2; i--)
+  {
+    a1=*b;
+    b1=(*a) - c[i-1]*(*b);
+    *a=a1;
+    *b=b1; 
+  }
+
+  (*a)*=sign(x);
+  (*b)*=sign(y);
+}
+
+
+int zr(u)
+register int u;
+
+{
+  int i;
+
+  for (i=l2; i<=ncol; i++) if (mat[u][i] != 0) return 0;
+  return 1;
+}
+
+void swapr(i,j)
+register int i, j;
+{
+  int k, l;
+
+  for (k=1; k<=ncol; k++)
+  {
+    l=mat[i][k];
+    mat[i][k]=mat[j][k];
+    mat[j][k]=l;
+  }
+}
+
+void euclidean(pos,t)
+register int pos, t;
+{
+  int a, b, d, k, p, q, r, s, u, v;
+
+  r=mat[l1][l2];
+  if (t == 1) s=mat[pos][l2]; else s=mat[l1][pos];
+
+  if (abs(r) == 1)
+  {
+    a=r;
+    b=0;
+    p=-s*r;
+    q=1;
+  }
+  else if (s % abs(r) == 0) 
+  {
+    a=1;
+    b=0;
+    p=-(s/r);
+    q=1;
+  }
+  else if (r % abs(s) == 0)
+  {
+    a=0;
+    b=1;
+    p=1;
+    q=-(r/s);
+  }
+  else
+  {
+    gc(r, s, &d, &a, &b);
+    p=s/d;
+    q=-r/d;
+
+  }
+
+  if (t == 1)
+  {
+    for (k=l2; k<=ncol; k++) 
+      if (mat[l1][k] != 0  ||  mat[pos][k] != 0)
     {
-      eb[i] = xeb[i]+1;
-      be[i] = xbe[i]+1;
+      u=mat[l1][k];
+      v=mat[pos][k];
+      mat[l1][k]=a*u+b*v;
+      mat[pos][k]=p*u+q*v;
     }
+  }
 
-    for (i=1; i<=np; i++)
+  if (t == 2)
+  {
+    for (k=l1; k<=nrow; k++) 
+      if (mat[k][l2] != 0  ||  mat[k][pos] != 0)
     {
-      be[i][1]=i;
-      be[i][-1]=q[i-1];
-      eb[i][1]=q[i+1];
-      eb[i][-1]=i;
+      u=mat[k][l2];
+      v=mat[k][pos];
+      mat[k][l2]=a*u+b*v;
+      mat[k][pos]=p*u+q*v;
     }
+  }
+}
 
-    for (i=1; i<=np-1; i++) cm[i][i+1]=cm[i+1][i]=i+1;
-    cm[np][1]=cm[1][np]=1;
-
-    
-    
-    for (i=1; i<=n; i+=2) fscanf(fp, "%d", a+i);
-    
-    for (i=1; i<=n; i+=2)
+int orient()
+{
+  int e[100], g[100], h[100], i, s, t;
+  for (i=1; i<=n+1; ++i)
+  { 
+    e[i]=0;f[i]=0;g[i]=0;h[i]=0;
+  }
+  f[1]=1; f[a[1]]=-1;
+  h[1]=1; h[a[1]]=1;
+  e[1]=1;
+  t=1;
+  while (t!=0)
+  {
+    e[t]=1;
+    for (i=t+1; i<=n+1; ++i)
+      if ((a[i]>=t) && (a[i]<=a[t])) 
+        e[i]=-e[i-1];
+      else 
+        e[i]=e[i-1];
+    for (i=t-1; i>=1; --i)
+      if ((a[i+1]>=t) && (a[i+1]<=a[t]))
+        e[i]=-e[i+1];
+      else
+        e[i]=e[i+1];
+    for (i=1; i<=t-1; ++i) g[i]=1;
+    for (i=a[t]+1; i<=n+1; ++i) g[i]=1;
+    s=0;i=1;
+    while ((s==0) && (i<=n+1))
     {
-      g[i] = a[i]/abs(a[i]);
-      a[i] = abs(a[i]);
+      if (g[i]==1) s=i;
+      ++i;
     }
-    for (i=1; i<=n; i+=2)
+    while (s!=0)
     {
-      a[a[i]] = i;
-      g[a[i]] = -g[i];
+      if ((a[s]<t) || (a[s]>a[t])) g[s]=g[a[s]]=0;
+      else
+      {
+        if (f[s]!=0) g[s]=g[a[s]]=0;
+        else
+        {
+          f[s]=e[s]*e[a[s]]*f[t];
+          f[a[s]]=-f[s];
+          g[s]=g[a[s]]=0;
+          if (((s!=1) || (abs(a[n+1]-a[1])!=1)) &&
+            ((s==1) || 
+              ((abs(a[s-1]-a[s])!=1) && (abs(a[s-1]-a[s])!=n))))
+          {
+            h[s]=h[a[s]]=1;
+          }
+        }
+      }
+      s=0;
+      i=1;
+      while ((s==0) && (i<=n+1))
+      {
+        if (g[i]==1) s=i;
+        ++i;
+      }
     }
-
-/* assemble data for goeritz matrix */
-
-    incidence();
-
-    for (i=1; i<=n; i+=2)
+    h[t]=h[a[t]]=0;
+    t=0;
+    i=1;
+    while ((t==0) && (i<=n+1))
     {
-      int v, w1, w2;
- 
-      v = eb[i][1];
-      w1 = be[a[v]][f[v]];
-      w2 = be[a[v]][-f[v]];
-      r1 = er[i][w1];
-      r2 = er[i][w2];
-      color[r1] = 1;
-      color[r2] = -1;
+      if (h[i]==1) t=i;
+      ++i;
     }
- 
-    for (i=2; i<=n+1; i+=2)
-    {
-      int v, w1, w2;
- 
-      v = eb[i][1];
-      w1 = be[a[v]][f[v]];
-      w2 = be[a[v]][-f[v]];
-      r1 = er[i][w1];
-      r2 = er[i][w2];
-      color[r1] = -1;
-      color[r2] = 1;
-    }
-    
-/* number black regions */
-
-    j=1;
-    for (i=1; i<=nr; ++i) if (color[i]==1) brn[i]=j++; else brn[i]=0;
-    nbr = j-1;
-  
-/* switch colors if necessary */
-
-    if (nbr > nr/2)
-    {
-      for (i=1; i<=nr; ++i) color[i]*=-1;
-      j=1;
-      for (i=1; i<=nr; ++i) if (color[i]==1) brn[i]=j++; else brn[i]=0;
-      nbr = j-1;
-    }
-  
-/* find black regions incident to each crossing */
-
-    for (i=1; i<=n; i+=2) if (color[c3[i][1]]==1)
-    {
-      vbr[i][1] = c3[i][1];
-      vbr[i][2] = c3[i][3];
-    }
-    else
-    {
-      vbr[i][1] = c3[i][2];
-      vbr[i][2] = c3[i][4];
-    }
-  
-/* record Kauffman sign of each crossing */
-
-    for (i=1; i<=n; i+=2) ksgn[i] = kf[vbr[i][1]][i];
- 
-    for (i=1; i<=nbr; ++i) for (j=1; j<=nbr; ++j) mat[i][j]=0;
-
- 
-    for (i=1; i<=0; ++i)
-    {
-      for (j=1; j<=nbr; ++j) printf("%3d", mat[i][j]);
-      printf("\n");
-    }
- 
-    for (i=1; i<=nbr; ++i) for(j=1; j<=nbr; ++j) mat[i][j]=0;
-  
-    for (i=1; i<=n; i+=2)
-    {
-      int r1, r2;
-    
-      r1 = brn[vbr[i][1]];
-      r2 = brn[vbr[i][2]];
-    
-      mat[r1][r1] += ksgn[i];
-      mat[r2][r2] += ksgn[i];
-      mat[r1][r2] -= ksgn[i];
-      mat[r2][r1] -= ksgn[i];
-    } 
- 
-    for (i=1; i<=0; ++i)
-    {
-      for (j=1; j<=nbr; ++j) printf("%3d", mat[i][j]);
-      printf("\n");
-    }  
-
-   
-    jacobi();
-
-    signature = 0;
-    
-    for (i=1; i<=nbr-1; ++i)
-    {
-      if (d[i] > 0) ++signature;
-      else --signature;
-    }
-        
-    for (i=1; i<=n; i+=2) if (f[i]*g[i] != ksgn[i]) signature -= ksgn[i];
-    signature = abs(signature);
-    
-    determinant = det();
-
-    fprintf(gp, "%3d %8d   ", nc, knotid);
-    for (i=1; i<=n; i+=2) fprintf(gp, "%4d", a[i]*g[i]);
-    fprintf(gp, "     %5d%5d\n", determinant, signature);
-    
   }
   return 0;
 }
 
-
-jacobi()
+int jacobi()
 {
   double sm, c, s, t, h, g, tau, theta, tresh, z[100], b[100], a[100][100], v[100][100];
   int p, q, i, j, n, rot;
@@ -391,54 +421,8 @@ int det()
 }
 
 
-gc(x, y, d, a, b)
-register int x, y, *d, *a, *b;
-{
-  int c[100], i, p, q, r, a1, b1, t;
 
-  p=abs(x);
-  q=abs(y);
-  t=0;
-  while (q != 0)
-  {
-    c[++t]=p/q;
-    r=p-c[t]*q;
-    p=q;
-    q=r;
-  }
-
-  *d=p;
-  *a=1;
-  *b=-c[t-1];
-
-  for (i=t-1; i>=2; i--)
-  {
-    a1=*b;
-    b1=(*a) - c[i-1]*(*b);
-    *a=a1;
-    *b=b1; 
-  }
-
-  (*a)*=sign(x);
-  (*b)*=sign(y);
-}
-
-
-swapr(i,j)
-register int i, j;
-{
-  int k, l;
-
-  for (k=1; k<=ncol; k++)
-  {
-    l=mat[i][k];
-    mat[i][k]=mat[j][k];
-    mat[j][k]=l;
-  }
-}
-
-
-swapc(i,j)
+void swapc(i,j)
 register int i, j;
 {
   int k, l;
@@ -452,78 +436,7 @@ register int i, j;
 }
 
 
-
-euclidean(pos,t)
-register int pos, t;
-{
-  int a, b, d, k, p, q, r, s, u, v;
-
-  r=mat[l1][l2];
-  if (t == 1) s=mat[pos][l2]; else s=mat[l1][pos];
-
-  if (abs(r) == 1)
-  {
-    a=r;
-    b=0;
-    p=-s*r;
-    q=1;
-  }
-  else if (s % abs(r) == 0) 
-  {
-    a=1;
-    b=0;
-    p=-(s/r);
-    q=1;
-  }
-  else if (r % abs(s) == 0)
-  {
-    a=0;
-    b=1;
-    p=1;
-    q=-(r/s);
-  }
-  else
-  {
-    gc(r, s, &d, &a, &b);
-    p=s/d;
-    q=-r/d;
-
-  }
-
-  if (t == 1)
-  {
-    for (k=l2; k<=ncol; k++) 
-      if (mat[l1][k] != 0  ||  mat[pos][k] != 0)
-    {
-      u=mat[l1][k];
-      v=mat[pos][k];
-      mat[l1][k]=a*u+b*v;
-      mat[pos][k]=p*u+q*v;
-    }
-  }
-
-  if (t == 2)
-  {
-    for (k=l1; k<=nrow; k++) 
-      if (mat[k][l2] != 0  ||  mat[k][pos] != 0)
-    {
-      u=mat[k][l2];
-      v=mat[k][pos];
-      mat[k][l2]=a*u+b*v;
-      mat[k][pos]=p*u+q*v;
-    }
-  }
-}
-
-sign(x)
-register int x;
-{
-  if (x > 0) return 1;
-  if (x < 0) return -1;
-  return 0;
-}
-
-matprint()
+void matprint()
 {
   int i, j;
 
@@ -543,7 +456,7 @@ matprint()
 }
 
 
-zc(v)
+int zc(v)
 register int v;
 
 {
@@ -554,18 +467,8 @@ register int v;
 }
 
 
-zr(u)
-register int u;
 
-{
-  int i;
-
-  for (i=l2; i<=ncol; i++) if (mat[u][i] != 0) return 0;
-  return 1;
-}
-
-
-eudone()
+int eudone()
 
 {
   register int i;
@@ -769,86 +672,171 @@ int x, y;
 }
 
 
-    
-int orient()
+
+
+int main(int argc, char **argv)
 {
-  int e[100], g[100], h[100], i, s, t;
-  for (i=1; i<=n+1; ++i)
-  { 
-    e[i]=0;f[i]=0;g[i]=0;h[i]=0;
-  }
-  f[1]=1; f[a[1]]=-1;
-  h[1]=1; h[a[1]]=1;
-  e[1]=1;
-  t=1;
-  while (t!=0)
+
+  FILE *fp, *gp;
+
+  fp=fopen(argv[1],"r");
+  gp=fopen(argv[2],"w");
+
+  
+  while (fscanf(fp, "%d%d", &nc, &knotid) != EOF)
   {
-    e[t]=1;
-    for (i=t+1; i<=n+1; ++i)
-      if ((a[i]>=t) && (a[i]<=a[t])) 
-        e[i]=-e[i-1];
-      else 
-        e[i]=e[i-1];
-    for (i=t-1; i>=1; --i)
-      if ((a[i+1]>=t) && (a[i+1]<=a[t]))
-        e[i]=-e[i+1];
-      else
-        e[i]=e[i+1];
-    for (i=1; i<=t-1; ++i) g[i]=1;
-    for (i=a[t]+1; i<=n+1; ++i) g[i]=1;
-    s=0;i=1;
-    while ((s==0) && (i<=n+1))
+    n = 2*nc - 1;
+    np = 2*nc;
+    nr = nc + 2;
+    
+    q=md+np;  /* q maps x to x mod np, with 0 replaced by np */
+    for(i=-np; i<=3*np; i++) *(q+i)=mod0(i);
+    
+    for (i=1; i<=np; i++)
     {
-      if (g[i]==1) s=i;
-      ++i;
+      eb[i] = xeb[i]+1;
+      be[i] = xbe[i]+1;
     }
-    while (s!=0)
+
+    for (i=1; i<=np; i++)
     {
-      if ((a[s]<t) || (a[s]>a[t])) g[s]=g[a[s]]=0;
-      else
-      {
-        if (f[s]!=0) g[s]=g[a[s]]=0;
-        else
-        {
-          f[s]=e[s]*e[a[s]]*f[t];
-          f[a[s]]=-f[s];
-          g[s]=g[a[s]]=0;
-          if (((s!=1) || (abs(a[n+1]-a[1])!=1)) &&
-            ((s==1) || 
-              ((abs(a[s-1]-a[s])!=1) && (abs(a[s-1]-a[s])!=n))))
-          {
-            h[s]=h[a[s]]=1;
-          }
-        }
-      }
-      s=0;
-      i=1;
-      while ((s==0) && (i<=n+1))
-      {
-        if (g[i]==1) s=i;
-        ++i;
-      }
+      be[i][1]=i;
+      be[i][-1]=q[i-1];
+      eb[i][1]=q[i+1];
+      eb[i][-1]=i;
     }
-    h[t]=h[a[t]]=0;
-    t=0;
-    i=1;
-    while ((t==0) && (i<=n+1))
+
+    for (i=1; i<=np-1; i++) cm[i][i+1]=cm[i+1][i]=i+1;
+    cm[np][1]=cm[1][np]=1;
+
+    
+    
+    for (i=1; i<=n; i+=2) fscanf(fp, "%d", a+i);
+    
+    for (i=1; i<=n; i+=2)
     {
-      if (h[i]==1) t=i;
-      ++i;
+      g[i] = a[i]/abs(a[i]);
+      a[i] = abs(a[i]);
     }
+    for (i=1; i<=n; i+=2)
+    {
+      a[a[i]] = i;
+      g[a[i]] = -g[i];
+    }
+
+/* assemble data for goeritz matrix */
+
+    incidence();
+
+    for (i=1; i<=n; i+=2)
+    {
+      int v, w1, w2;
+ 
+      v = eb[i][1];
+      w1 = be[a[v]][f[v]];
+      w2 = be[a[v]][-f[v]];
+      r1 = er[i][w1];
+      r2 = er[i][w2];
+      color[r1] = 1;
+      color[r2] = -1;
+    }
+ 
+    for (i=2; i<=n+1; i+=2)
+    {
+      int v, w1, w2;
+ 
+      v = eb[i][1];
+      w1 = be[a[v]][f[v]];
+      w2 = be[a[v]][-f[v]];
+      r1 = er[i][w1];
+      r2 = er[i][w2];
+      color[r1] = -1;
+      color[r2] = 1;
+    }
+    
+/* number black regions */
+
+    j=1;
+    for (i=1; i<=nr; ++i) if (color[i]==1) brn[i]=j++; else brn[i]=0;
+    nbr = j-1;
+  
+/* switch colors if necessary */
+
+    if (nbr > nr/2)
+    {
+      for (i=1; i<=nr; ++i) color[i]*=-1;
+      j=1;
+      for (i=1; i<=nr; ++i) if (color[i]==1) brn[i]=j++; else brn[i]=0;
+      nbr = j-1;
+    }
+  
+/* find black regions incident to each crossing */
+
+    for (i=1; i<=n; i+=2) if (color[c3[i][1]]==1)
+    {
+      vbr[i][1] = c3[i][1];
+      vbr[i][2] = c3[i][3];
+    }
+    else
+    {
+      vbr[i][1] = c3[i][2];
+      vbr[i][2] = c3[i][4];
+    }
+  
+/* record Kauffman sign of each crossing */
+
+    for (i=1; i<=n; i+=2) ksgn[i] = kf[vbr[i][1]][i];
+ 
+    for (i=1; i<=nbr; ++i) for (j=1; j<=nbr; ++j) mat[i][j]=0;
+
+ 
+    for (i=1; i<=0; ++i)
+    {
+      for (j=1; j<=nbr; ++j) printf("%3d", mat[i][j]);
+      printf("\n");
+    }
+ 
+    for (i=1; i<=nbr; ++i) for(j=1; j<=nbr; ++j) mat[i][j]=0;
+  
+    for (i=1; i<=n; i+=2)
+    {
+      int r1, r2;
+    
+      r1 = brn[vbr[i][1]];
+      r2 = brn[vbr[i][2]];
+    
+      mat[r1][r1] += ksgn[i];
+      mat[r2][r2] += ksgn[i];
+      mat[r1][r2] -= ksgn[i];
+      mat[r2][r1] -= ksgn[i];
+    } 
+ 
+    for (i=1; i<=0; ++i)
+    {
+      for (j=1; j<=nbr; ++j) printf("%3d", mat[i][j]);
+      printf("\n");
+    }  
+
+   
+    jacobi();
+
+    signature = 0;
+    
+    for (i=1; i<=nbr-1; ++i)
+    {
+      if (d[i] > 0) ++signature;
+      else --signature;
+    }
+        
+    for (i=1; i<=n; i+=2) if (f[i]*g[i] != ksgn[i]) signature -= ksgn[i];
+    signature = abs(signature);
+    
+    determinant = det();
+
+    fprintf(gp, "%3d %8d   ", nc, knotid);
+    for (i=1; i<=n; i+=2) fprintf(gp, "%4d", a[i]*g[i]);
+    fprintf(gp, "     %5d%5d\n", determinant, signature);
+    
   }
   return 0;
 }
-
-
-
-    
-  
-  
-  
-
-  
-  
-  
-

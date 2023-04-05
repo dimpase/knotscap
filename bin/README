@@ -1,3 +1,0 @@
-a placeholder for binaries directory; git cannot add empty directories
-to the tree, but this directory needs to be present for build
-to work on some versions of Linux.

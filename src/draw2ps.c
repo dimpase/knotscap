@@ -1,13 +1,12 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-FILE *fp1, *fp2, *gp;
-
-
-main(int argc, char **argv)
+int main(int argc, char **argv)
 {
   double coords1[100][6], coords2[100][10], cross[100][8], mid[200][8];
   int i, j, nc, id, a[100], g[100];
 
+  FILE *fp1, *fp2, *gp;
 
   fp1 = fopen(argv[1],"r");
   fp2 = fopen(argv[2],"r");

@@ -10,7 +10,7 @@ int  a[100], a0[100], f[100], nc, n, np, knotid, i, j, k, comp, len, knit,
 char *str, c;
 
 
-main(argc, argv)
+int main(argc, argv)
 int argc;
 char *argv[];
 
@@ -174,7 +174,7 @@ char *argv[];
 }
 
 
-orient()
+void orient()
 {
   int e[100], g[100], h[100], k1, k2;
   register int i, s, t;
